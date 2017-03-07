@@ -16,7 +16,7 @@ cd /lepus/pymongo-2.7/ && python setup.py install && \
 cd /lepus/redis-2.10.3/ && python setup.py install
 
 RUN \
-cd /lepus/ &&
+cd /lepus/ && \
 unzip $LEPUS_VERSION.zip && \
 chmod +x $LEPUS_VERSION/python/install.sh && \
 chmod +x /lepus/run.sh && \
