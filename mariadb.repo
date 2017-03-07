@@ -5,3 +5,10 @@ name = MariaDB
 baseurl = http://yum.mariadb.org/10.0/centos6-amd64
 gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
 gpgcheck=1
+
+#国内换成这个会快一点
+# [mariadb]
+# name = MariaDB
+# baseurl = https://mirrors.ustc.edu.cn/mariadb/yum/10.0/centos6-amd64
+# gpgkey=https://mirrors.ustc.edu.cn/mariadb/yum/RPM-GPG-KEY-MariaDB
+# gpgcheck=1
