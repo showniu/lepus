@@ -13,7 +13,7 @@ mkdir -p /opt/mysql
 
 docker run -d --name=lepus -p 80:80 -p 3306:3306 \
 -v /opt/mysql:/var/lib/mysql -v /etc/timelocal:/etc/timelocal \
-georce/lepus
+haha123/lepus
 ```
 
 # Available Configuration Parameters
