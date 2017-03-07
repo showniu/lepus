@@ -1,6 +1,6 @@
 FROM centos:6.6
 
-ENV LEPUS_VERSION Lepus_v3.8_Beta
+ENV LEPUS_VERSION Lepus_v3.8_beta
 
 COPY mariadb.repo /etc/yum.repos.d/mariadb.repo
 
