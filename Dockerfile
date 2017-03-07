@@ -10,7 +10,7 @@ COPY lepus /lepus
 
 RUN cd /lepus/MySQLdb1-master/ && python setup.py build && python setup.py install && cd /lepus/pymongo-2.7/ && python setup.py install && cd /lepus/redis-2.10.3/ && python setup.py install
 
-RUN unzip /lepus/$LEPUS_VERSION && chmod +x /lupus/$LEPUS_VERSION/python/install.sh && chmod +x /lepus/run.sh && cd /lupus/$LEPUS_VERSION/python && sh install.sh
+RUN unzip /lepus/$LEPUS_VERSION.zip && chmod +x /lupus/$LEPUS_VERSION/python/install.sh && chmod +x /lepus/run.sh && cd /lupus/$LEPUS_VERSION/python && sh install.sh
 
 RUN cp -ap /lupus/$LEPUS_VERSION/php/* /var/www/html/.
 
