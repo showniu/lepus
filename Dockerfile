@@ -1,6 +1,6 @@
 FROM centos:6.6
 
-ENV LEPUS_VERSION Lepus_3.8_Beta
+ENV LEPUS_VERSION Lepus_v3.8_Beta
 
 COPY mariadb.repo /etc/yum.repos.d/mariadb.repo
 
@@ -10,7 +10,13 @@ COPY lepus /lepus
 
 RUN cd /lepus/MySQLdb1-master/ && python setup.py build && python setup.py install && cd /lepus/pymongo-2.7/ && python setup.py install && cd /lepus/redis-2.10.3/ && python setup.py install
 
-RUN unzip /lepus/$LEPUS_VERSION.zip && chmod +x /$LEPUS_VERSION/python/install.sh && chmod +x /lepus/run.sh && cd /$LEPUS_VERSION/python && sh install.sh
+RUN \
+cd / &&
+unzip /lepus/$LEPUS_VERSION.zip && \
+chmod +x /$LEPUS_VERSION/python/install.sh &&\
+chmod +x /lepus/run.sh
+
+RUN cd /$LEPUS_VERSION/python && sh install.sh
 
 RUN cp -ap /$LEPUS_VERSION/php/* /var/www/html/.
 
