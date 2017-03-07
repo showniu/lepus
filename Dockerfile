@@ -16,10 +16,11 @@ cd /lepus/pymongo-2.7/ && python setup.py install && \
 cd /lepus/redis-2.10.3/ && python setup.py install
 
 RUN \
-unzip /lepus/Lepus_v3.8_beta.zip && \
-chmod +x /Lepus_v3.8_beta/python/install.sh && \
+cd /lepus/ && \
+unzip  Lepus_v3.8_beta.zip && \
+chmod +x /lepus/Lepus_v3.8_beta/python/install.sh && \
 chmod +x /lepus/run.sh && \
-cd /Lepus_v3.8_beta/python/ && bash install.sh
+cd /lepus/Lepus_v3.8_beta/python/ && bash install.sh
 
 RUN cp -ap /lepus/Lepus_v3.8_beta/php/* /var/www/html/
 
