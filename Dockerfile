@@ -22,7 +22,7 @@ chmod +x /lepus/Lepus_v3.8_beta/python/install.sh && \
 chmod +x /lepus/run.sh && \
 cd /lepus/Lepus_v3.8_beta/python/ && bash install.sh
 
-RUN cp -ap /lepus/Lepus_v3.8_beta/php/* /var/www/html/
+RUN cp -r /lepus/Lepus_v3.8_beta/php/* /var/www/html/
 
 RUN chmod +x /lepus/config.sh && sh /lepus/config.sh
 
