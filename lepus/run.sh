@@ -17,11 +17,11 @@ chown -R mysql:mysql /var/lib/mysql
 if [ ! -d /var/lib/mysql/mysql ]; then
   echo "Installing database..."
   mysql_install_db --user=mysql >/dev/null 2>&1
-  
+
   # start mysql server
   echo "Starting MySQL server..."
   /usr/bin/mysqld_safe >/dev/null 2>&1 &
-  
+
    # wait for mysql server to start (max 30 seconds)
   timeout=30
   echo -n "Waiting for database server to accept connections"
@@ -36,14 +36,14 @@ if [ ! -d /var/lib/mysql/mysql ]; then
     sleep 1
   done
   echo
-  
+
   /usr/bin/mysqladmin shutdown
 fi
 
 # create new user / database
 if [ -n "${DB_USER}" -o -n "${DB_NAME}" ]; then
   /usr/bin/mysqld_safe >/dev/null 2>&1 &
-  
+
   # wait for mysql server to start (max 30 seconds)
   timeout=30
   while ! /usr/bin/mysqladmin -u root status >/dev/null 2>&1
@@ -55,7 +55,7 @@ if [ -n "${DB_USER}" -o -n "${DB_NAME}" ]; then
     fi
     sleep 1
   done
-  
+
   if [ -n "${DB_NAME}" ]; then
     for db in $(awk -F',' '{for (i = 1 ; i <= NF ; i++) print $i}' <<< "${DB_NAME}"); do
       echo "Creating database \"$db\"..."
@@ -73,7 +73,7 @@ fi
 # migrate database
 if [ -d /var/lib/mysql/lepus ]; then
   /usr/bin/mysqld_safe >/dev/null 2>&1 &
-    
+
   # wait for mysql server to start (max 30 seconds)
   timeout=30
   while ! /usr/bin/mysqladmin -u root status >/dev/null 2>&1
@@ -85,17 +85,17 @@ if [ -d /var/lib/mysql/lepus ]; then
     fi
     sleep 1
   done
-  
+
 	QUERY="SELECT count(*) FROM information_schema.tables WHERE table_schema = 'lepus';"
 	COUNT=$(mysql -ss -e "${QUERY}")
 	if [ -z "${COUNT}" -o ${COUNT} -eq 0 ]; then
 		echo "Setting up Lepus for firstrun. Please be patient, this could take a while..."
-		mysql lepus -e "source /lepus/sql/lepus_table.sql"
+		mysql lepus -e "source /lepus/Lepus_v3.8_beta/sql/lepus_table.sql"
 		sleep 10
-		mysql lepus -e "source /lepus/sql/lepus_data.sql"
+		mysql lepus -e "source /lepus/Lepus_v3.8_beta/sql/lepus_data.sql"
 	fi
 	sleep 1
-	
+
 	/usr/bin/mysqladmin shutdown
 fi
 
