@@ -15,6 +15,29 @@ docker run -d --name=lepus -p 80:80 -p 3306:3306 \
 -v /opt/mysql:/var/lib/mysql -v /etc/timelocal:/etc/timelocal \
 haha123/lepus
 ```
+访问 http://127.0.0.1:80
+
+# 修复启动后访问报错的问题
+因为centos6.6 和 mariadb 10 版本都不维护了。 所以我无法直接在镜像里修复了（我真的尝试过了）
+
+```bash
+# 进入已经启动的容器
+docker exec -it lepus bash
+# 编辑配置文件
+# 用户名密码配置写进去
+vi /var/www/html/application/config/database.php
+...
+$db['default']['password'] = 'password';
+$db['default']['database'] = 'lepus';
+...
+# 退出容器
+exit
+# 重启容器
+docker restart lepus
+```
+然后就可以访问了
+愉快的使用吧 http://127.0.0.1:80
+
 
 # Available Configuration Parameters
 - **USERNAME**: admin
