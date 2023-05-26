@@ -1,9 +1,10 @@
-FROM centos:6.6
+FROM centos:7.9.2009
 
 #ENV LEPUS_VERSION Lepus_v3.8_beta
 RUN rm -rf  /etc/yum.repos.d/*
+COPY Centos-7.repo /etc/yum.repos.d/
 COPY mariadb.repo /etc/yum.repos.d/mariadb.repo
-COPY Centos-vault-6.6.repo /etc/yum.repos.d/Centos-vault-6.6.repo
+
 
 RUN \
 yum install -y httpd php php-mysql gcc libffi-devel python-devel openssl-devel MariaDB MariaDB-devel unzip net-snmp* && \
